@@ -31,6 +31,7 @@ stages:
               npm install
               npm test
             displayName: 'Install dependencies and run tests'
+<<<<<<< HEAD
 
   - stage: Deploy
     jobs:
@@ -52,4 +53,25 @@ stages:
               echo "Debug: $(resources['repositories']['self']['checkoutOptions'])"
             displayName: 'Debug Output'
         
+=======
+>>>>>>> origin/main
 
+  - stage: Deploy
+    jobs:
+      - job: Deploy
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '14.x'
+            displayName: 'Install Node.js'
+
+          # Add your deployment steps here
+
+          - task: ReplaceTokens@2
+            inputs:
+              targetFiles: '**/*.json'
+              encoding: 'auto'
+
+          - script: |
+              echo "Debug: $(resources['repositories']['self']['checkoutOptions'])"
+            displayName: 'Debug Output'
