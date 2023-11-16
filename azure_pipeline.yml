@@ -43,7 +43,7 @@ stages:
 
           # Add your deployment steps here
 
-          - task: ReplaceTokens@3
+          - task: ReplaceTokens@2
             inputs:
               targetFiles: '**/*.json'
               encoding: 'auto'
