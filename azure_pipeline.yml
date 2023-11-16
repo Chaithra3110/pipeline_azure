@@ -1,22 +1,55 @@
 trigger:
-- main
+  branches:
+    include:
+      - main
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '14.x'
-  displayName: 'Install Node.js'
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '14.x'
+            displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm test
-  displayName: 'Install dependencies and run tests'
+          # Add your build steps here
 
-- script: |
-    echo "Debug: $(resources['repositories']['self']['checkoutOptions'])"
-  displayName: 'Debug Output'
+  - stage: Test
+    jobs:
+      - job: Test
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '14.x'
+            displayName: 'Install Node.js'
 
+          - script: |
+              npm install
+              npm test
+            displayName: 'Install dependencies and run tests'
+
+  - stage: Deploy
+    jobs:
+      - job: Deploy
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '14.x'
+            displayName: 'Install Node.js'
+
+          # Add your deployment steps here
+
+          - task: ReplaceTokens@3
+            inputs:
+              targetFiles: '**/*.json'
+              encoding: 'auto'
+
+          - script: |
+              echo "Debug: $(resources['repositories']['self']['checkoutOptions'])"
+            displayName: 'Debug Output'
+        
 
