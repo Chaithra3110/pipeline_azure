@@ -1,0 +1,13 @@
+{
+  "name": "my-first-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js application for Azure DevOps",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "build": "echo 'Build step placeholder'"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
