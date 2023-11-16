@@ -15,4 +15,8 @@ steps:
     npm test
   displayName: 'Install dependencies and run tests'
 
+- script: |
+    echo "Debug: $(resources['repositories']['self']['checkoutOptions'])"
+  displayName: 'Debug Output'
+
 
